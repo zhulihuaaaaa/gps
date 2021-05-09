@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../asserts/plugin/booststrap/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/plugin/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/css/common.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/css/login.css"/>
+		<title></title>
+	</head>
+	<body>
+		<img class="login-bg" src="../asserts/images/login1.png"/>
+		<div class="login-div">
+			<h2>GPS设备数据平台</h2>
+			<hr />
+			  <div class="form-group">
+			    <div class="input-group">
+			      <div class="input-group-addon"><i class="fa fa-user"></i></div>
+			      <input type="text" class="form-control" placeholder="请输入用户名">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <div class="input-group">
+			      <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+			      <input type="text" class="form-control" placeholder="请输入密码">
+			    </div>
+			  </div>
+			    <div onsubmit="validateCode()" style="padding: 10px 60px 0 60px;overflow: hidden;">
+				    <input class="pull-left" type="text"  id="inputCode" placeholder="请输入验证码"/>
+				    <div class="pull-left" id="checkCode" onclick="createCode()"></div>
+				    <a href="#" class="login-a" onclick="createCode()" style="">换一个</a>
+			    </div>
+				<div class="login-button">
+				  	<button type="button" class="btn btn-primary" id="Button1"  onclick="validateCode();">登&nbsp;&nbsp;&nbsp;&nbsp;陆</button>
+				  	<a href="#">忘记密码?</a>
+				</div>
+			  
+		</div>
+	</body>
+	<script type="text/javascript">
+        var code;
+        function createCode() {
+            code = "";
+            var codeLength = 5; //验证码的长度
+            var checkCode = document.getElementById("checkCode");
+            var codeChars = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 
+            'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z',
+            'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'); //所有候选组成验证码的字符，当然也可以用中文的
+            for (var i = 0; i < codeLength; i++) 
+            {
+                var charNum = Math.floor(Math.random() * 52);
+                code += codeChars[charNum];
+            }
+            if (checkCode) 
+            {
+                checkCode.className = "code";
+                checkCode.innerHTML = code;
+            }
+        }
+        function validateCode() 
+        {
+            var inputCode = document.getElementById("inputCode").value;
+            if (inputCode.length <= 0) 
+            {
+                alert("请输入验证码！");
+            }
+            else if (inputCode.toUpperCase() != code.toUpperCase()) 
+            {
+                alert("验证码输入有误！");
+                createCode();
+            }
+            else 
+            {
+                alert("验证码正确！");
+            }        
+        }    
+     </script>
+</html>

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../asserts/plugin/booststrap/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/plugin/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/plugin/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/css/common.css"/>
+		<title></title>
+	</head>
+	<body>
+		<div class="main">
+			<div class="top-title">
+				<p class="pull-left">物联网卡管理</p>
+				<div class="pull-right">
+					<form class="form-inline">
+					  <div class="form-group">
+					    <label>批量文件操作</label>
+					    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#batch-import">批量导入</button>
+					    <button type="button" class="btn btn-default">批量更新</button>
+					  </div>
+					  <div class="form-group">
+					    <label>批量列表操作</label>
+					    <button type="button" class="btn btn-default">批量取消流量池关联</button>
+					    <button type="button" class="btn btn-default">批量删除</button>
+					  </div>
+					</form>
+					<button type="submit" class="btn btn-success" data-toggle="modal" data-target="#modalNew">新增</button>
+				</div>
+			</div>
+			<!--搜索-->
+			<div class="search-div">
+				<form class="form-inline">
+				  <div class="form-group">
+				    <label>卡号</label>
+				    <input type="text" class="form-control" >
+				  </div>
+				  <div class="form-group">
+				    <label>IMEI号</label>
+				    <input type="text" class="form-control">
+				  </div>
+				  <div class="form-group">
+				    <label>关联流量池</label>
+				    <select class="form-control">
+				    	<option>-全部-</option>
+				    	<option>租赁系统</option>
+				    </select>
+				  </div>
+				  <div class="form-group">
+				    <label>绑定状态</label>
+				    <select class="form-control">
+				    	<option>-全部-</option>
+				    </select>
+				  </div>
+				</form>
+				<form class="form-inline">
+				  <div class="form-group">
+				    <label>激活时间</label>
+				    <input size="23" type="text" readonly class="form_datetime"> ~
+				    <input size="23" type="text" readonly class="form_datetime">
+				  </div>
+				  <div class="form-group">
+				    <label>到期时间</label>
+				    <input size="23" type="text" readonly class="form_datetime"> ~
+				    <input size="23" type="text" readonly class="form_datetime">
+				  </div>
+				  <button type="submit" class="btn btn-primary">搜索</button>
+				</form>
+			</div>
+			<!--搜索end-->
+			<div class="table-div">
+				<table class="table table-bordered" id="list">
+					<tr>
+						<th><input type="checkbox" id="all"/></th>
+						<th>运营号</th>
+						<th>卡号</th>
+						<th>IMEI号</th>
+						<th>关联流量池</th>
+						<th>绑定状态</th>
+						<th>激活时间</th>
+						<th>到期时间</th>
+						<th>操作</th>
+					</tr>
+					<tr>
+						<td><input type="checkbox"/></td>
+						<td>中国移动</td>
+						<td>10202054456224</td>
+						<td>1234567890521</td>
+						<td>1号流量池</td>
+						<td>已绑定</td>
+						<td>2018-01-01 12:00:02</td>
+						<td>2018-01-02 12:00:02</td>
+						<td>
+							<button type="button" class="btn btn-link grayblue">编辑</button>
+							<button type="button" class="btn btn-link redword">删除</button>
+						</td>
+					</tr>
+					<tr>
+						<td><input type="checkbox"/></td>
+						<td>中国移动</td>
+						<td>10202054456224</td>
+						<td>1234567890521</td>
+						<td>1号流量池</td>
+						<td>已绑定</td>
+						<td>2018-01-01 12:00:02</td>
+						<td>2018-01-02 12:00:02</td>
+						<td>
+							<button type="button" class="btn btn-link grayblue">编辑</button>
+							<button type="button" class="btn btn-link redword">删除</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--分页-->
+			<nav aria-label="Page navigation" class="paging">
+				<p class="pull-right grayword">&nbsp;&nbsp;&nbsp;总 &nbsp;500&nbsp; 页</p>
+				<ul class="pagination pull-right">
+				    <li>
+				      <a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    <li class="active"><a href="#">1</a></li>
+				    <li><a href="#">2</a></li>
+				    <li><a href="#">3</a></li>
+				    <li><a href="#">4</a></li>
+				    <li><a href="#">5</a></li>
+				    <li>
+				      <a href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				</ul>
+				<p class="pull-right">总记录 &nbsp;<span class="grayblue">500</span>&nbsp; 条&nbsp;&nbsp;&nbsp;</p>
+			</nav>
+		
+			<!--弹出框-->
+			<!--批量导入-->
+			<div class="modal fade " id="batch-import" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      	<div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				        <h4 class="modal-title">批量导入</h4>
+				    </div>
+				    <div class="modal-body">
+				        <table class="table" id="table">
+				        	<tr>
+				        		<td><input type="file" /></td>
+				        		<td>
+				        			<i class="fa fa-plus" id="addTable"></i>
+				        			<i class="fa fa-close" id="deletTable"></i>
+				        		</td>
+				        	</tr>
+				        </table>
+				    </div>
+				    <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+				        <button type="button" class="btn btn-primary">保存</button>
+				    </div>
+			    </div>
+			  </div>
+			</div>
+			<!--新增-->
+			<div class="modal fade" id="modalNew" tabindex="-1" role="dialog" aria-labelledby="modalNew">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">新增</h4>
+			      </div>
+			      <div class="modal-body">
+			      	<form class="form-horizontal">
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">运营商</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">卡号</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">IMEI号</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">关联流量池</label>
+					    <div class="col-sm-10">
+					      	<select class="form-control">
+							  <option>-请选择-</option>
+							  <option>1号流量池</option>
+							</select>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">激活时间</label>
+					    <div class="col-sm-10">
+					      <input size="16" type="text" readonly class="form_datetime form-control">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">质保到期</label>
+					    <div class="col-sm-10">
+					      <input size="16" type="text" readonly class="form_datetime form-control">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label class="col-sm-2 control-label">质保到期</label>
+					    <div class="col-sm-10">
+					      	<p style="line-height: 34px;">已绑定</p>
+					    </div>
+					  </div>
+					</form>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        <button type="button" class="btn btn-primary">保存</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</body>
+	<script src="../asserts/plugin/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../asserts/plugin/booststrap/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../asserts/plugin/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(document).on('click','#addTable',function(){
+			var content = "<tr><td><input type='file' /></td>"
+			        		+"<td><i class='fa fa-plus' id='addTable'></i>"
+			        		+"<i class='fa fa-close' id='deletTable'></i>"
+			        		+"</td></tr>";
+    		$("#table").append(content);
+		});
+		$(document).on('click','#deletTable',function(){
+			$(this).parents("tr").remove();
+		})
+//		时间插件
+		$(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+//		 	全选
+		$("#all").click(function(){   
+		    if(this.checked){   
+		        $("#list :checkbox").prop("checked", true);  
+		    }else{   
+			$("#list :checkbox").prop("checked", false);
+		    }   
+		});
+	</script>
+</html>

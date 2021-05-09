@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="../asserts/plugin/booststrap/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/plugin/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/plugin/bootstrap-datetimepicker/bootstrap-datetimepicker.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/css/common.css"/>
+		<title></title>
+	</head>
+	<body>
+		<div class="main">
+			<div class="top-title">
+				<p class="pull-left">流量池管理</p>
+				<div class="pull-right">
+					  <button type="submit" class="btn btn-success" data-toggle="modal" data-target="#modalNew">新增</button>
+				</div>
+			</div>
+			<!--搜索-->
+			<div class="search-div">
+				<form class="form-inline">
+				  <div class="form-group">
+				    <label>流量池名称</label>
+				    <input type="text" class="form-control" >
+				  </div>
+				  <div class="form-group">
+				    <label>流量池配额</label>
+				    <input type="text" class="form-control">
+				  </div>
+				  <div class="form-group">
+				    <label>联系人</label>
+				    <input type="text" class="form-control"> ~
+				    <input type="text" class="form-control">
+				  </div>
+				  <div class="form-group">
+				    <label>启动状态</label>
+				    <select class="form-control">
+				    	<option>-全部-</option>
+				    </select>
+				  </div>
+				  <button type="submit" class="btn btn-primary">搜索</button>
+				</form>
+				<form class="form-inline">
+				  <div class="form-group">
+				    <label>启动时间</label>
+				    <input size="23" type="text" readonly class="form_datetime"> ~
+				    <input size="23" type="text" readonly class="form_datetime">
+				  </div>
+				  <div class="form-group">
+				    <label>关联卡数量</label>
+				    <input type="text" class="form-control"> -
+				    <input type="text" class="form-control">
+				  </div>
+				  <button type="submit" class="btn btn-primary">搜索</button>
+				</form>
+			</div>
+			<!--搜索end-->
+			<div class="table-div">
+				<table class="table table-bordered" id="list">
+					<tr>
+						<th><input type="checkbox" id="all"/></th>
+						<th>流量池名称</th>
+						<th>启用状态</th>
+						<th>关联卡数量</th>
+						<th>启用时间</th>
+						<th>流量池配额</th>
+						<th>已用流量</th>
+						<th>剩余流量</th>
+						<th>操作</th>
+					</tr>
+					<tr>
+						<th><input type="checkbox" /></th>
+						<td>租赁业务流量池</td>
+						<td>启用</td>
+						<td>2000</td>
+						<td>2018-01-02 12:00:03</td>
+						<td>200G</td>
+						<td>20G</td>
+						<td>180G</td>
+						<td>
+							<button type="button" class="btn btn-link grayblue">编辑</button>
+							<button type="button" class="btn btn-link redword">删除</button>
+						</td>
+					</tr>
+					<tr>
+						<th><input type="checkbox" /></th>
+						<td>租赁业务流量池</td>
+						<td>启用</td>
+						<td>2000</td>
+						<td>2018-01-02 12:00:03</td>
+						<td>200G</td>
+						<td>20G</td>
+						<td>180G</td>
+						<td>
+							<button type="button" class="btn btn-link grayblue">编辑</button>
+							<button type="button" class="btn btn-link redword">删除</button>
+						</td>
+					</tr>
+				</table>
+			</div>
+			<!--分页-->
+			<nav aria-label="Page navigation" class="paging">
+				<p class="pull-right grayword">&nbsp;&nbsp;&nbsp;总 &nbsp;500&nbsp; 页</p>
+				<ul class="pagination pull-right">
+				    <li>
+				      <a href="#" aria-label="Previous">
+				        <span aria-hidden="true">&laquo;</span>
+				      </a>
+				    </li>
+				    <li class="active"><a href="#">1</a></li>
+				    <li><a href="#">2</a></li>
+				    <li><a href="#">3</a></li>
+				    <li><a href="#">4</a></li>
+				    <li><a href="#">5</a></li>
+				    <li>
+				      <a href="#" aria-label="Next">
+				        <span aria-hidden="true">&raquo;</span>
+				      </a>
+				    </li>
+				</ul>
+				<p class="pull-right">总记录 &nbsp;<span class="grayblue">500</span>&nbsp; 条&nbsp;&nbsp;&nbsp;</p>
+			</nav>
+			
+			<!--弹出框-->
+			<div class="modal fade" id="modalNew" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title">新增</h4>
+			      </div>
+			      <div class="modal-body">
+			        <form class="form-horizontal">
+					  <div class="form-group">
+					    <label for="inputEmail3" class="col-sm-2 control-label">流量池名称</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="inputPassword3" class="col-sm-2 control-label">流量池配额</label>
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control">
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="inputPassword3" class="col-sm-2 control-label">启用状态</label>
+					    <div class="col-sm-10">
+					      	<select class="form-control">
+							  <option>启用</option>
+							  <option>禁用</option>
+							</select>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="inputPassword3" class="col-sm-2 control-label">已用流量</label>
+					    <div class="col-sm-10">
+					      <p style="line-height: 34px;">50000 MB</p>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="inputPassword3" class="col-sm-2 control-label">剩余流量</label>
+					    <div class="col-sm-10">
+					      <p style="line-height: 34px;">180000 MB</p>
+					    </div>
+					  </div>
+					  <div class="form-group">
+					    <label for="inputPassword3" class="col-sm-2 control-label">绑定卡数量</label>
+					    <div class="col-sm-10">
+					      <p style="line-height: 34px;">2000</p>
+					    </div>
+					  </div>
+					</form>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+			        <button type="button" class="btn btn-primary">保存</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+		</div>
+	</body>
+	<script src="../asserts/plugin/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../asserts/plugin/booststrap/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" type="text/css" href="../asserts/plugin/font-awesome-4.7.0/css/font-awesome.min.css"/>
+	<script src="../asserts/plugin/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+//		全选
+		$("#all").click(function(){   
+		    if(this.checked){   
+		        $("#list :checkbox").prop("checked", true);  
+		    }else{   
+			$("#list :checkbox").prop("checked", false);
+		    }   
+		});
+//		时间插件
+		$(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+	</script>
+</html>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gps.manager.dao.ext.GpsExtMapper" >
+  <resultMap id="BaseResultMap" type="com.gps.manager.entity.vo.GpsVo" >
+    <id column="did" property="did" jdbcType="INTEGER" />
+    <result column="dev_id" property="devId" jdbcType="INTEGER" />
+    <result column="dev_sno" property="devSno" jdbcType="VARCHAR" />
+    <result column="ext_firm_id" property="extFirmId" jdbcType="INTEGER" />
+    <result column="ext_mode_id" property="extModeId" jdbcType="INTEGER" />
+    <result column="ext_type_id" property="extTypeId" jdbcType="INTEGER" />
+    <result column="proj_id" property="projId" jdbcType="INTEGER" />
+    <result column="prod_no" property="prodNo" jdbcType="INTEGER" />
+    <result column="dev_ts" property="devTs" jdbcType="BIGINT" />
+    <result column="bas_acc" property="basAcc" jdbcType="INTEGER" />
+    <result column="bas_defe_sta" property="basDefeSta" jdbcType="INTEGER" />
+    <result column="bas_ride_sta" property="basRideSta" jdbcType="INTEGER" />
+    <result column="bas_reason" property="basReason" jdbcType="INTEGER" />
+    <result column="bas_sensor" property="basSensor" jdbcType="INTEGER" />
+    <result column="bas_fcode" property="basFcode" jdbcType="VARCHAR" />
+    <result column="gps_lng" property="gpsLng" jdbcType="DECIMAL" />
+    <result column="gps_lat" property="gpsLat" jdbcType="DECIMAL" />
+    <result column="gps_spd" property="gpsSpd" jdbcType="INTEGER" />
+    <result column="gps_heading" property="gpsHeading" jdbcType="INTEGER" />
+    <result column="gps_ts" property="gpsTs" jdbcType="BIGINT" />
+    <result column="dev_mc" property="devMc" jdbcType="VARCHAR" />
+    <result column="bat_vol" property="batVol" jdbcType="INTEGER" />
+    <result column="bat_cap" property="batCap" jdbcType="INTEGER" />
+    <result column="bat_sn" property="batSn" jdbcType="VARCHAR" />
+    <result column="dev_status" property="devStatus" jdbcType="INTEGER" />
+     <result column="firm_name" property="firmName" jdbcType="VARCHAR" />
+     <result column="type_name" property="typeName" jdbcType="VARCHAR" />
+     <result column="mode_name" property="modeName" jdbcType="VARCHAR" />
+     <result column="proj_name" property="projName" jdbcType="VARCHAR" />
+  </resultMap>
+  
+    <select id="findPage" resultMap="BaseResultMap"  parameterType="com.gps.manager.entity.dto.GpsDto">
+    		SELECT  gps.*,firm.firm_name,proj.proj_name,type.type_name,mode.mode_name from gps.gps gps
+		  LEFT JOIN gps_firm firm ON gps.ext_firm_id = firm.firm_id
+		  LEFT JOIN proj ON gps.proj_id = proj.proj_id
+		  LEFT JOIN gps_type type ON gps.ext_type_id = type.type_id
+		  LEFT JOIN gps_mode mode ON gps.ext_mode_id = mode.mode_id
+		  where gps.ext_firm_id = gps.ext_firm_id 
+		   <if test="dto.devId != null and dto.devId != ''" >
+		      AND gps.dev_id = #{dto.devId,jdbcType=VARCHAR}
+		   </if>
+		    <if test="dto.extFirmId != null and dto.extFirmId != ''" >
+		      AND gps.ext_firm_id = #{dto.extFirmId,jdbcType=INTEGER}
+		   </if>
+		   <if test="dto.projId != null and dto.projId != ''" >
+		      AND gps.proj_id = #{dto.projId,jdbcType=INTEGER}
+		   </if>
+		   <if test="dto.devSno != null and dto.devSno != ''" >
+		      AND gps.dev_sno like CONCAT(CONCAT('%', #{dto.devSno,jdbcType=VARCHAR}), '%')
+		   </if>
+		   <if test="dto.extModeId != null and dto.extModeId != ''" >
+		      AND gps.ext_mode_id = #{dto.extModeId,jdbcType=INTEGER}
+		   </if>
+		    <if test="dto.extTypeId != null and dto.extTypeId != ''" >
+		      AND gps.ext_type_id = #{dto.extTypeId,jdbcType=INTEGER}
+		   </if>
+		   <if test="dto.prodNo != null and dto.prodNo != ''" >
+		      AND gps.prod_no = #{dto.prodNo,jdbcType=INTEGER}
+		   </if>
+		   <if test="dto.basAcc != null and dto.basAcc != ''" >
+		      AND gps.bas_acc = #{dto.basAcc,jdbcType=INTEGER}
+		   </if>
+		   <if test="dto.basRideSta != null and dto.basRideSta != ''" >
+		      AND gps.bas_ride_sta = #{dto.basRideSta,jdbcType=INTEGER}
+		   </if>
+		   <if test="dto.batSn != null and dto.batSn != ''" >
+		      AND gps.bat_sn like CONCAT(CONCAT('%', #{dto.batSn,jdbcType=VARCHAR}), '%')
+		   </if>
+		   <if test="dto.devStatus != null and dto.devStatus != ''" >
+		      AND gps.dev_status = #{dto.devStatus,jdbcType=INTEGER}
+		   </if> 
+  	</select>
+
+</mapper>

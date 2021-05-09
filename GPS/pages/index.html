@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../asserts/plugin/booststrap/bootstrap.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/plugin/font-awesome-4.7.0/css/font-awesome.min.css"/>
+		<link rel="stylesheet" type="text/css" href="../asserts/css/common.css"/>
+	</head>
+	<body style="overflow-y: hidden;">
+		<!--top-->
+		<div class="top">
+			<img src="../asserts/images/logo.png" class="pull-left top-img"/>
+			<div class="pull-right" id="dropDown-mine">
+				<img src="../asserts/images/0.jpg"/>
+				李泽言
+			</div>
+		</div>
+		<!--我的下拉框-->
+		<div class="dropDown-div">
+			<ul>
+				<li><a href="#">个人信息</a></li>
+				<li><a href="#">修改密码</a></li>
+				<li><a href="#">退出登录</a></li>
+			</ul>
+		</div>
+		<!--main-->
+		<div class="index-main">
+			<div class="pull-left index-nav">
+				<ul>
+					<li>
+						<div class="index-nav-div" style="overflow: hidden;">
+							<div class="pull-left"></div>
+							<a href="#" class="pull-right"><i class="fa fa-database"></i>基础管理</a>
+						</div>
+						<!--nav折叠-->
+						<ul class="nav-toggle">
+							<li><a href="xtjc.html" target="main-iframe">系统集成管理</a></li>
+							<li><a href="GPSmanage.html" target="main-iframe">GPS设备管理</a></li>
+							<li><a href="wlwk.html" target="main-iframe">物联网卡管理</a></li>
+							<li><a href="llc.html" target="main-iframe">流量池管理</a></li>
+						</ul>
+					</li>
+					<li>
+						<div class="index-nav-div" style="overflow: hidden;">
+							<div class="pull-left"></div>
+							<a href="#" class="pull-right"><i class="fa fa-user-circle-o"></i>用户单位</a>
+						</div>
+						<!--nav折叠-->
+						<ul class="nav-toggle">
+							<li><a href="#">系统集成管理</a></li>
+							<li><a href="#">GPS设备管理</a></li>
+						</ul>
+					</li>
+					<li>
+						<div class="index-nav-div" style="overflow: hidden;">
+							<div class="pull-left"></div>
+							<a href="#" class="pull-right"><i class="fa fa-user-circle-o"></i>单位定位</a>
+						</div>
+					</li>
+					<li>
+						<div class="index-nav-div" style="overflow: hidden;">
+							<div class="pull-left"></div>
+							<a href="#" class="pull-right"><i class="fa fa-user-circle-o"></i>历史轨迹</a>
+						</div>
+					</li>
+					<li>
+						<div class="index-nav-div" style="overflow: hidden;">
+							<div class="pull-left"></div>
+							<a href="#" class="pull-right"><i class="fa fa-user-circle-o"></i>里程统计</a>
+						</div>
+					</li>
+					<li>
+						<div class="index-nav-div" style="overflow: hidden;">
+							<div class="pull-left"></div>
+							<a href="#" class="pull-right"><i class="fa fa-user-circle-o"></i>报警统计</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="pull-right index-ifram">
+				<iframe src="xtjc.html" width="" height="" name="main-iframe"></iframe>
+			</div>
+		</div>
+		
+	</body>
+	<script src="../asserts/plugin/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../asserts/plugin/booststrap/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$("#dropDown-mine").click(function(e){
+			$(".dropDown-div").slideToggle();
+			$("body").click(function(){
+				$(".dropDown-div").slideUp();
+			});
+			e.stopPropagation();
+		})
+		$(".dropDown-div").click(function(e){
+			e.stopPropagation();
+		});
+//		nav计算屏幕高度
+		$(".index-nav").height($(window).height() - 76);
+		$(".index-ifram").height($(window).height() - 76);
+		$(".index-ifram iframe").height($(window).height() - 76);
+//		鼠标效果
+		$(".index-nav-div").mouseover(function(){
+			$(this).css("margin-left",0);
+		})
+		$(".index-nav-div").mouseout(function(){
+			$(this).css("margin-left",-6);
+		})
+//		折叠
+		$(".index-nav-div").click(function(){
+			$(".index-nav-div").next(".nav-toggle").slideUp();
+			$(this).next(".nav-toggle").slideToggle();
+		})
+	</script>
+</html>
